@@ -27,7 +27,7 @@ services:
       - database-challenge
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DevSuCnx=Server=database-challenge;Database=DEVSU;Password=DevsuChallenge2024;Persist Security Info=True;User ID=sa;
+      - ConnectionStrings__DevSuCnx=Server=database-challenge;Database=DEVSU;Password=cc;Persist Security Info=True;User ID=sa;
 
   ms-account:
     build:

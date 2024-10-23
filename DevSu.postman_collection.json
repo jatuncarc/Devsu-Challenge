@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "01843a6c-918d-4e14-871e-4774ddc8225c",
+		"name": "DevSu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5636871"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "ClienteGET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClientePOST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"MANUEL LOPEZX\",\r\n    \"Gender\": \"M\",\r\n    \"Age\": 40,\r\n    \"Identification\": \"42859532\",\r\n    \"Address\": \"Av Cuzco 444\",\r\n    \"Phone\": \"2576512\",\r\n    \"Password\":\"XXXXX\",\r\n    \"State\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClientePUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1,\r\n    \"Name\": \"JOSE LEMAX\",\r\n    \"Gender\": \"M\",\r\n    \"Age\": 133,\r\n    \"Identification\": \"40404040\",\r\n    \"Address\": \"AV LIMA 8888\",\r\n    \"Phone\": \"914653332\",\r\n    \"Password\":\"A1B2C3D4xxx\",\r\n    \"State\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes/1",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClientePATCH",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"Age\",\r\n        \"value\": 39\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"Phone\",\r\n        \"value\": \"991476889\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes/1",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClienteDELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes/4",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClienteByIdentificationGET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes/GetCustomerByIdentification/42859532",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes",
+								"GetCustomerByIdentification",
+								"42859532"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ClienteByIdGET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-cliente}}/clientes/5",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cliente}}"
+							],
+							"path": [
+								"clientes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cuenta",
+			"item": [
+				{
+					"name": "CuentaGET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-cuenta}}/cuentas",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-cuenta}}"
+							],
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CuentaPOST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Number\": 4545454545,\r\n    \"AccountType\": \"AHO\",\r\n    \"OpeningBalance\": 330,\r\n    \"State\": true,\r\n    \"CustomerId\": 35\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5262/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5262",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CuentaPUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Number\": 1111111111,\r\n    \"AccountType\": \"CTE\",\r\n    \"OpeningBalance\": 5000,\r\n    \"State\": true,\r\n    \"CustomerId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5262/cuentas/1111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5262",
+							"path": [
+								"cuentas",
+								"1111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CuentaPATCH",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"OpeningBalance\",\r\n        \"value\": 8002\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5262/cuentas/1111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5262",
+							"path": [
+								"cuentas",
+								"1111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CuentaDELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5262/cuentas/1111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5262",
+							"path": [
+								"cuentas",
+								"1111111111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimiento",
+			"item": [
+				{
+					"name": "MovimientoGET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-movimiento}}/movimientos",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-movimiento}}"
+							],
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MovimientoPOST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"MovementType\": \"R\",\r\n    \"Value\": -23.44,\r\n    \"Balance\": 5,\r\n    \"AccountId\": 1111111111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host-ms-movimiento}}/movimientos",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-movimiento}}"
+							],
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MovimientoPUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\":14,\r\n    \"MovementType\": \"A\",\r\n    \"Value\": 2.6,\r\n    \"Balance\": 700,\r\n    \"AccountId\": 1111111111\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host-ms-movimiento}}/movimientos/14",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-movimiento}}"
+							],
+							"path": [
+								"movimientos",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MovimientoPATCH",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json-patch+json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"Value\",\r\n        \"value\": -5.2\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{host-ms-movimiento}}/movimientos/14",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-movimiento}}"
+							],
+							"path": [
+								"movimientos",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MovimientoDELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-movimiento}}/movimientos/14",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-movimiento}}"
+							],
+							"path": [
+								"movimientos",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "ReporteGET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host-ms-reporte}}/reportes?cliente=40404040&fechaDesde=2024-10-23T14:29:10&fechaHasta=2024-10-23T14:29:11",
+							"protocol": "http",
+							"host": [
+								"{{host-ms-reporte}}"
+							],
+							"path": [
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "cliente",
+									"value": "40404040"
+								},
+								{
+									"key": "fechaDesde",
+									"value": "2024-10-23T14:29:10"
+								},
+								{
+									"key": "fechaHasta",
+									"value": "2024-10-23T14:29:11"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

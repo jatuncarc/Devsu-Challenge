@@ -8,5 +8,11 @@ docker-compose up --build -d
 ```
 
 
-2. second
-3. third
+2. Una vez levantado el contenedor de la base de datos SQL Server, conectarse con los siguientes credenciales:
+
+Server: localhost,1433
+user: sa
+Password: DevsuChallenge2024
+
+Y luego ejecutar el script BaseDatos.sql
+3. La colección de postman se encuentra en el archivo DevSu.postman_collection.json
