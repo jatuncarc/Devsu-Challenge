@@ -1,0 +1,53 @@
+#version: '3.4'
+
+services:
+  database-challenge:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: database
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=DevsuChallenge2024
+    ports:
+      - "1433:1433"
+    networks:
+      - mynetwork
+    volumes:
+      - sqlvolume:/var/opt/mssql
+
+  ms-customer:
+    build:
+      context: .
+      dockerfile: CustomerMS/Dockerfile
+    container_name: ms-customer
+    ports:
+      - "5001:80"  # Exponer el puerto 80 del contenedor como 5001 en el host
+    networks:
+      - mynetwork
+    depends_on:
+      - database-challenge
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DevSuCnx=Server=database-challenge;Database=DEVSU;Password=DevsuChallenge2024;Persist Security Info=True;User ID=sa;
+
+  ms-account:
+    build:
+      context: .
+      dockerfile: AccountMS/Dockerfile
+    container_name: ms-account
+    ports:
+      - "5002:80"  # Exponer el puerto 80 del contenedor como 5001 en el host
+    networks:
+      - mynetwork
+    depends_on:
+      - database-challenge
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DevSuCnx=Server=database-challenge;Database=DEVSU;Password=DevsuChallenge2024;Persist Security Info=True;User ID=sa;
+      - ClientesService__Url=Server=http://localhost:5001
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  sqlvolume:
