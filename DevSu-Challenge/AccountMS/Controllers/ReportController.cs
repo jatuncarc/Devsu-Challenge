@@ -1,4 +1,5 @@
-﻿using AccountMS.Models;
+﻿using AccountMS.Exceptions;
+using AccountMS.Models;
 using AccountMS.Repositories;
 using AccountMS.Services;
 using Microsoft.AspNetCore.Http;
@@ -20,9 +21,22 @@ namespace AccountMS.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<Report>> GetStatement()
+        public async Task<ActionResult<IEnumerable<Report>>> GetStatement([FromQuery] int cliente, [FromQuery] DateTime? fechaDesde, [FromQuery] DateTime? fechaHasta)
         {
-            return await reportService.GetStatement(10101010);
+            try
+            {
+                return Ok(await reportService.GetStatement(cliente, fechaDesde, fechaHasta));
+            }
+            catch (AccountException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+                throw;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Ocurrió un error inesperado.", detalle = ex.Message });
+            }
+
         }
 
 

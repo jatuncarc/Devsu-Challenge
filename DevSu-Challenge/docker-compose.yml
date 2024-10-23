@@ -20,7 +20,7 @@ services:
       dockerfile: CustomerMS/Dockerfile
     container_name: ms-customer
     ports:
-      - "5001:80"  # Exponer el puerto 80 del contenedor como 5001 en el host
+      - "5001:80"
     networks:
       - mynetwork
     depends_on:
@@ -35,7 +35,7 @@ services:
       dockerfile: AccountMS/Dockerfile
     container_name: ms-account
     ports:
-      - "5002:80"  # Exponer el puerto 80 del contenedor como 5001 en el host
+      - "5002:80"
     networks:
       - mynetwork
     depends_on:
@@ -43,7 +43,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DevSuCnx=Server=database-challenge;Database=DEVSU;Password=DevsuChallenge2024;Persist Security Info=True;User ID=sa;
-      - ClientesService__Url=Server=http://localhost:5001
+      - ClientesService__Url=http://ms-customer
 
 networks:
   mynetwork:

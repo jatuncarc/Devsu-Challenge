@@ -8,27 +8,24 @@ namespace AccountMS.Services
 {
     public class ReportService : IReportService
     {
-        private readonly IReportRepository reportRepository;
         private readonly IMovementService movementService;
         private readonly IAccountService accountService;
         private readonly ICustomerService customerService;
 
-        public ReportService(IReportRepository reportRepository,
-            IMovementService movementService,
+        public ReportService(IMovementService movementService,
             IAccountService accountService,
             ICustomerService customerService)
-        { 
-            this.reportRepository = reportRepository;
+        {
             this.movementService = movementService;
             this.accountService = accountService;
             this.customerService = customerService;
         }
 
-        public async Task<IEnumerable<Report>> GetStatement(int CustomerIdentication)
+        public async Task<IEnumerable<Report>> GetStatement(int CustomerIdentification, DateTime? fechaDesde, DateTime? fechaHasta)
         {
-            
-            var accounts = await accountService.GetAccountsByCustomerIdentification(CustomerIdentication);
-            var customer = await customerService.GetCustomerByIdentification(CustomerIdentication);
+
+            var accounts = await accountService.GetAccountsByCustomerIdentification(CustomerIdentification);
+            var customer = await customerService.GetCustomerByIdentification(CustomerIdentification);
 
             List<Report> report = new List<Report>();
 
@@ -36,11 +33,16 @@ namespace AccountMS.Services
             {
                 var movements = await movementService.GetMovementsByAccountId(account.Number);
 
-                foreach(var movement in movements) {
+                var filteredMovements = movements.Where(x =>
+                                        (!fechaDesde.HasValue || x.Date >= fechaDesde) &&
+                                        (!fechaHasta.HasValue || x.Date <= fechaHasta)).OrderByDescending(m => m.Id);
+
+                foreach (var movement in filteredMovements)
+                {
 
                     report.Add(new Report
                     {
-                        Fecha = DateTime.Now,
+                        Fecha = movement.Date,
                         Cliente = customer.Name,
                         NumeroCuenta = movement.AccountId,
                         Tipo = account.AccountType,
@@ -51,25 +53,8 @@ namespace AccountMS.Services
                     });
                 }
 
-                
+
             }
-
-            //var query = from m in movements
-            //            join a in _context.Cuentas on m.AccountId equals a.Number
-            //            join p in _context.Personas on a.CustomerId equals p.Id
-            //            select new
-            //            {
-            //                FechaMovimiento = m.Date,
-            //                NombreCliente = p.Name,
-            //                NumeroCuenta = a.Number,
-            //                TipoCuenta = a.AccountType,
-            //                SaldoInicial = a.OpeningBalance,
-            //                EstadoCuenta = a.State,
-            //                ValorMovimiento = m.Value,
-            //                SaldoDespuesMovimiento = m.Balance
-            //            };
-
-            //return query.ToList();
 
             return report;
         }

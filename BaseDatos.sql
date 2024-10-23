@@ -38,7 +38,7 @@ CREATE TABLE [dbo].[Person](
 	Name [varchar](50) NULL,
 	Gender [char](1) NULL,
 	Age [int] NULL,
-	Identification [varchar](20) NULL,
+	Identification [int] NULL,
 	Address [varchar](100) NULL,
 	Phone [varchar](20) NULL,
  CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED (Id ASC)) ON [PRIMARY]
@@ -61,7 +61,7 @@ GO
 
 CREATE TABLE [dbo].[Account](
 	Number bigint NOT NULL,
-	AccountType [char](3) NULL,
+	AccountType [varchar](10) NULL,
 	OpeningBalance [decimal](18, 2) NULL,
 	State [bit] NULL,
 	CustomerId [int] NULL,
@@ -113,47 +113,22 @@ INSERT INTO Customer VALUES(SCOPE_IDENTITY(),'EEEEEE',1)
 
 
 --****************************************************************************************************
-INSERT INTO Account VALUES(1111111111,'AHO',100.88,1,1)
-INSERT INTO Account VALUES(2222222222,'AHO',100,2,1)
-INSERT INTO Account VALUES(3333333333,'AHO',100,3,1)
-INSERT INTO Account VALUES(4444444444,'CTE',100,4,1)
-INSERT INTO Account VALUES(5555555555,'CTE',100,5,1)
-INSERT INTO Account VALUES(6666666666,'CTE',100,6,1)
+INSERT INTO Account VALUES(1111111111,'Ahorros',500,1,1)
+INSERT INTO Account VALUES(2222222222,'Corriente',600,1,1)
+INSERT INTO Account VALUES(3333333333,'Ahorros',700,1,2)
+INSERT INTO Account VALUES(4444444444,'Ahorros',1000,1,2)
+INSERT INTO Account VALUES(5555555555,'Corriente',200,1,3)
+INSERT INTO Account VALUES(6666666666,'Corriente',100,1,4)
 
 
-INSERT INTO Movement VALUES(getdate(),'A',2,100,1111111111)
-INSERT INTO Movement VALUES(getdate(),'C',55,100,1111111111)
-INSERT INTO Movement VALUES(getdate(),'A',3.5,100,1111111111)
-INSERT INTO Movement VALUES(getdate(),'C',4.4,100,1111111111)
-INSERT INTO Movement VALUES(getdate(),'A',10.9,100,1111111111)
-INSERT INTO Movement VALUES(getdate(),'C',25.50,100,1111111111)
+INSERT INTO Movement VALUES(getdate(),'D',10,510,1111111111)
 
-INSERT INTO Movement VALUES(getdate(),'A',2,100,2222222222)
-INSERT INTO Movement VALUES(getdate(),'C',6,100,2222222222)
+INSERT INTO Movement VALUES(getdate(),'D',100,700,2222222222)
+INSERT INTO Movement VALUES(getdate(),'C',-20,680,2222222222)
 
 
-INSERT INTO Movement VALUES(getdate(),'A',0.5,100,3333333333)
-INSERT INTO Movement VALUES(getdate(),'C',3.2,100,3333333333)
-INSERT INTO Movement VALUES(getdate(),'A',11.5,100,3333333333)
-INSERT INTO Movement VALUES(getdate(),'C',2.80,100,3333333333)
-
-INSERT INTO Movement VALUES(getdate(),'A',18.90,100,4444444444)
-INSERT INTO Movement VALUES(getdate(),'C',23.1,100,4444444444)
-
-INSERT INTO Movement VALUES(getdate(),'A',9.7,100,5555555555)
-INSERT INTO Movement VALUES(getdate(),'C',16.3,100,5555555555)
-
-INSERT INTO Movement VALUES(getdate(),'A',20.9,100,6666666666)
-INSERT INTO Movement VALUES(getdate(),'C',14.3,100,6666666666)
-
---SELECT 
---    fk.name AS ForeignKeyName,
---    tp.name AS ParentTable,
---    tr.name AS ReferencedTable
---FROM sys.foreign_keys AS fk
---INNER JOIN sys.tables AS tp ON fk.parent_object_id = tp.object_id
---INNER JOIN sys.tables AS tr ON fk.referenced_object_id = tr.object_id
---WHERE tr.name = 'Customer';
+INSERT INTO Movement VALUES(getdate(),'D',150,850,3333333333)
+INSERT INTO Movement VALUES(getdate(),'C',-50,800,3333333333)
 
 
---IF EXISTS (select * from sys.foreign_keys where name = 'FK_Customer_Person')
+INSERT INTO Movement VALUES(getdate(),'C',-500,500,4444444444)
